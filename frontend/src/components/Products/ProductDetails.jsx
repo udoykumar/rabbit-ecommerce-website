@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import ProductGrid from "./ProductGrid";
 
 const selectedProduct = {
   name: "Stylish Jacket",
@@ -14,6 +16,68 @@ const selectedProduct = {
     { url: "https://picsum.photos/500/500?random=2" },
   ],
 };
+const similarProduct = [
+  {
+    _id: 1,
+    name: "Wireless Headphones",
+    price: 2500,
+    image: [{ url: "https://picsum.photos/500/500?random=1", alText: "" }],
+  },
+  {
+    _id: 2,
+    name: "Smart Watch",
+    price: 3200,
+    image: [{ url: "https://picsum.photos/500/500?random=2" }],
+  },
+  {
+    _id: 3,
+    name: "Mechanical Keyboard",
+    price: 4500,
+    image: [{ url: "https://picsum.photos/500/500?random=3" }],
+  },
+  {
+    _id: 4,
+    name: "Gaming Mouse",
+    price: 1800,
+    image: [{ url: "https://picsum.photos/500/500?random=4" }],
+  },
+  {
+    _id: 5,
+    name: "Portable Power Bank",
+    price: 1200,
+    image: [{ url: "https://picsum.photos/500/500?random=5" }],
+  },
+  {
+    _id: 6,
+    name: "Bluetooth Speaker",
+    price: 2800,
+    image: [{ url: "https://picsum.photos/500/500?random=6" }],
+  },
+  {
+    _id: 7,
+    name: "LED Desk Lamp",
+    price: 1500,
+    image: [{ url: "https://picsum.photos/500/500?random=7" }],
+  },
+  {
+    _id: 8,
+    name: "USB-C Hub",
+    price: 2200,
+    image: [{ url: "https://picsum.photos/500/500?random=8" }],
+  },
+  {
+    _id: 9,
+    name: "Laptop Stand",
+    price: 1100,
+    image: [{ url: "https://picsum.photos/500/500?random=9" }],
+  },
+  {
+    _id: 10,
+    name: "Noise Cancelling Earbuds",
+    price: 3500,
+    image: [{ url: "https://picsum.photos/500/500?random=10" }],
+  },
+];
 
 const ProductDetails = () => {
   const [mainImage, setMainImage] = useState("");
@@ -33,6 +97,24 @@ const ProductDetails = () => {
     if (action === "plus") setQuantity((prev) => prev + 1);
 
     if (action === "minus" && quantity > 1) setQuantity((prev) => prev - 1);
+  };
+
+  const handleAddToCart = () => {
+    if (!selectedSize || !selectedColor) {
+      return toast.error(
+        "Please select a size and color before adding to cart.",
+        {
+          duration: 1000,
+        },
+      );
+    }
+    setIsButtonDisabled(true);
+    setTimeout(() => {
+      toast.success("Product added to cart", {
+        duration: 1000,
+      });
+      setIsButtonDisabled(false);
+    }, 500);
   };
   return (
     <div className="p-6">
@@ -121,8 +203,12 @@ const ProductDetails = () => {
                 </button>
               </div>
             </div>
-            <button className="bg-black text-white py-2 px-6 rounded w-full mb-4">
-              Add To Cart
+            <button
+              onClick={handleAddToCart}
+              disabled={isButtonDisabled}
+              className={`bg-black text-white py-2 px-6 rounded w-full mb-4 ${isButtonDisabled ? "cursor-not-allowed opacity-50" : "hover:bg-gray-900"}`}
+            >
+              {isButtonDisabled ? "Adding..." : " Add To Cart"}
             </button>
             <div className="mt-10 text-gray-700">
               <h3 className="text-xl font-bold mb-4">Characteristics:</h3>
@@ -140,6 +226,12 @@ const ProductDetails = () => {
               </table>
             </div>
           </div>
+        </div>
+        <div className="mt-20">
+          <h2 className="text-2xl text-center font-medium mb-4">
+            You May Also Like
+          </h2>
+          <ProductGrid products={similarProduct} />
         </div>
       </div>
     </div>
