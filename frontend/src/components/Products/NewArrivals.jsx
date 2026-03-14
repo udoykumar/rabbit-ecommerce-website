@@ -9,7 +9,7 @@ const NewArrivals = () => {
   const [scrollLeft, setScrollLeft] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  console.log({ canScrollLeft, canScrollRight });
+
   const newArrivals = [
     {
       _id: "1",
@@ -83,12 +83,6 @@ const NewArrivals = () => {
       setCanScrollLeft(leftScroll > 0);
       setCanScrollRight(rightScrollable);
     }
-    console.log({
-      scrollLeft: container.scrollLeft,
-      clientWidth: container.clientWidth,
-      containerScrollWidth: container.scrollWidth,
-      offsetLeft: scrollRef.current.offsetLeft,
-    });
   };
 
   useEffect(() => {
@@ -101,7 +95,7 @@ const NewArrivals = () => {
     }
   }, []);
   return (
-    <section className="container mx-auto py-16 px-4 lg:px-0">
+    <section className="max-w-5xl mx-auto py-16 px-4 lg:px-0">
       <div className=" text-center mb-10 relative">
         <h2 className="text-3xl font-bold mb-4 ">Explore New Arrivals</h2>
         <p className="text-lg text-gray-600 mb-8">

@@ -21,66 +21,47 @@ const similarProduct = [
     _id: 1,
     name: "Wireless Headphones",
     price: 2500,
-    image: [{ url: "https://picsum.photos/500/500?random=1", alText: "" }],
+    image: [
+      {
+        url: "https://picsum.photos/500/500?random=1",
+        altText: "Wireless Headphones",
+      },
+    ],
   },
   {
     _id: 2,
     name: "Smart Watch",
     price: 3200,
-    image: [{ url: "https://picsum.photos/500/500?random=2" }],
+    image: [
+      { url: "https://picsum.photos/500/500?random=2", altText: "Smart Watch" },
+    ],
   },
   {
     _id: 3,
     name: "Mechanical Keyboard",
     price: 4500,
-    image: [{ url: "https://picsum.photos/500/500?random=3" }],
+    image: [
+      {
+        url: "https://picsum.photos/500/500?random=3",
+        altText: "Mechanical Keyboard",
+      },
+    ],
   },
   {
     _id: 4,
     name: "Gaming Mouse",
     price: 1800,
-    image: [{ url: "https://picsum.photos/500/500?random=4" }],
-  },
-  {
-    _id: 5,
-    name: "Portable Power Bank",
-    price: 1200,
-    image: [{ url: "https://picsum.photos/500/500?random=5" }],
-  },
-  {
-    _id: 6,
-    name: "Bluetooth Speaker",
-    price: 2800,
-    image: [{ url: "https://picsum.photos/500/500?random=6" }],
-  },
-  {
-    _id: 7,
-    name: "LED Desk Lamp",
-    price: 1500,
-    image: [{ url: "https://picsum.photos/500/500?random=7" }],
-  },
-  {
-    _id: 8,
-    name: "USB-C Hub",
-    price: 2200,
-    image: [{ url: "https://picsum.photos/500/500?random=8" }],
-  },
-  {
-    _id: 9,
-    name: "Laptop Stand",
-    price: 1100,
-    image: [{ url: "https://picsum.photos/500/500?random=9" }],
-  },
-  {
-    _id: 10,
-    name: "Noise Cancelling Earbuds",
-    price: 3500,
-    image: [{ url: "https://picsum.photos/500/500?random=10" }],
+    image: [
+      {
+        url: "https://picsum.photos/500/500?random=4",
+        altText: "Gaming Mouse",
+      },
+    ],
   },
 ];
 
 const ProductDetails = () => {
-  const [mainImage, setMainImage] = useState("");
+  const [mainImage, setMainImage] = useState(null);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [quantity, setQuantity] = useState(1);
