@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import register from "../assets/register.webp";
+import { IoMdEye } from "react-icons/io";
+import { IoIosEyeOff } from "react-icons/io";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("user register", { name, email, password });
@@ -44,15 +47,25 @@ const Register = () => {
               placeholder="Enter your email address"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <label className="block text-sm font-semibold mb-2">Password</label>
             <input
-              type="password"
+              type={show ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full p-2 border rounded"
               placeholder="Enter your password"
             />
+            <span
+              onClick={() => setShow(!show)}
+              className="absolute top-9 right-3"
+            >
+              {show ? (
+                <IoIosEyeOff className="w-6 h-6 " />
+              ) : (
+                <IoMdEye className="w-6 h-6 " />
+              )}
+            </span>
           </div>
           <button
             type="submit"
